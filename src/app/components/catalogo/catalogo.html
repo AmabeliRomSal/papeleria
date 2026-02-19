@@ -1,1 +1,12 @@
-<p>catalogo works!</p>
+<!--p>catalogo works!</p-->
+
+<header class="header">
+    <h1>Catálogo</h1>
+    <p>Ejemplo utilizando Angular 21 standalone.</p>
+</header>
+
+<section class="grid">
+    @for (p of products; track p.id) {
+        <app-product-card [product]="p"></app-product-card>
+    }
+</section>
