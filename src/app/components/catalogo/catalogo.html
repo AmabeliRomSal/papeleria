@@ -2,11 +2,10 @@
 
 <header class="header">
     <h1>Catálogo</h1>
-    <p>Ejemplo utilizando Angular 21 standalone.</p>
 </header>
 
 <section class="grid">
-    @for (p of products; track p.id) {
+    @for (p of products(); track p.idProducto) {
         <app-product-card [product]="p"></app-product-card>
     }
 </section>

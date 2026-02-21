@@ -1,19 +1,46 @@
-<!--p>product-card works!</p-->
-
 <article class="card">
-    <img class="img" [src]="product.imageUrl" [alt]="product.name"/>
+<!--<id>
+    <nombre>
+    <precio>
+    <descripcion>
+    <estado>
+    <cantidad>
+    <imagen>
+    <fecha>
+    -->
+
+    <img 
+        class="img" 
+        [src]="'/' + (product.imagen || 'no-image.jpg')" 
+        [alt]="product.nombre"
+    />
 
     <div class="body">
         <div class="top">
-            <h3 class="title">{{ product.name }}</h3>
-            <span class="price">{{ product.price | currency:'MXN'}}</span>
+            <h3 class="title">{{ product.nombre }}</h3>
+            <span class="price">
+                {{ product.precio | currency:'MXN' }}
+            </span>
         </div>
 
-        <p class="meta">{{ product.category }}</p>
-        <p class="desc">{{ product.description }}</p>
+        <p class="meta">Cantidad disponible: {{ product.cantidad }}</p>
+        <p class="desc">{{ product.descripcion }}</p>
 
-        <p class="stock" [class.out]="!product.inStock"> @if (product.inStock) { En stock } @else { Agotado }</p>
+        <p 
+            class="stock" 
+            [class.out]="product.estado !== 'Disponible'"
+        >
+            @if (product.estado === 'Disponible') {
+                Disponible
+            } @else {
+                Agotado
+            }
+        </p>
 
-        <button class="btn" [disabled]="!product.inStock"> Agregar </button>
+        <button 
+            class="btn" 
+            [disabled]="product.estado !== 'Disponible'">
+            Agregar
+        </button>
     </div>
 </article>
