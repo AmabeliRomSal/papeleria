@@ -2,10 +2,18 @@
 
 <header class="header">
     <h1>Catálogo</h1>
+    <p>Productos en stock: {{inStockCount()}}</p>
 </header>
 
-<section class="grid">
-    @for (p of products(); track p.idProducto) {
-        <app-product-card [product]="p"></app-product-card>
-    }
-</section>
+@if (products().length === 0) {
+    <p>Cargando productos(o revisar ruta XML)</p>
+} @else {
+    <section class="grid">
+        @for (p of products(); track p.idProducto) {
+            <app-product-card [product]="p" (add)="agregar($event)"></app-product-card>
+        }
+    </section>
+}
+
+<hr class="sep"/>
+<app-carrito></app-carrito>
